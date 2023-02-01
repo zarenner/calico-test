@@ -1,0 +1,13 @@
+apiVersion: projectcalico.org/v3
+kind: NetworkPolicy
+metadata:
+  name: allow-egress-to-not-foo-namespace-not-nginx-pods
+  namespace: default
+spec:
+  types:
+  - Egress
+  egress:
+  - action: Allow
+    destination:
+      namespaceSelector: projectcalico.org/name != 'foo'
+      selector: app != 'nginx'

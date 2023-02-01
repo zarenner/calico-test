@@ -1,0 +1,13 @@
+apiVersion: projectcalico.org/v3
+kind: NetworkPolicy
+metadata:
+  name: deny-all-egress
+  namespace: default
+spec:
+  types:
+  - Egress
+  egress:
+  - action: Deny
+    destination:
+      namespaceSelector: all()
+      selector: all()
